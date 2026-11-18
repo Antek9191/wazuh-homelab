@@ -50,7 +50,7 @@ Atak szedł z Ubuntu, 192.168.56.101, na Fedorę, 192.168.56.102. Użyłem Hydry
 
 Najpierw enumeracja kont, próby logowania na nieistniejące konta `admin` i `ubuntu`, 3 listopada ok. 19:31 i 19:44. Wazuh złapał to regułą 5710, "Attempt to login using a non-existent user".
 
-Potem brute force na konto `testuser`, **[UZUPEŁNIJ DATĘ]**, kilka fal między 13:01 a 14:17. Widać serie równoległych nieudanych logowań, kilka prób w tej samej sekundzie z różnych portów źródłowych, co pasuje do narzędzia działającego automatycznie, a nie człowieka klikającego ręcznie. Reguła 5760 łapała pojedyncze nieudane próby, a po przekroczeniu progu, 8 błędów w 120 sekund z tego samego IP, odpaliła się reguła 5763, "sshd: brute force trying to get access to the system", poziom 10. To był najmocniejszy alert z tego scenariusza.
+Potem brute force na konto `testuser`, kilka fal między 13:01 a 14:17. Widać serie równoległych nieudanych logowań, kilka prób w tej samej sekundzie z różnych portów źródłowych, co pasuje do narzędzia działającego automatycznie, a nie człowieka klikającego ręcznie. Reguła 5760 łapała pojedyncze nieudane próby, a po przekroczeniu progu, 8 błędów w 120 sekund z tego samego IP, odpaliła się reguła 5763, "sshd: brute force trying to get access to the system", poziom 10. To był najmocniejszy alert z tego scenariusza.
 
 Najważniejsze: testuser w pewnym momencie zalogował się skutecznie, reguła 5715, w trakcie trwania serii brute force, o 13:17:40 i 14:05:54. Czyli hasło było w słowniku i zostało złamane. To realna kompromitacja konta w labie, nie tylko próba.
 
